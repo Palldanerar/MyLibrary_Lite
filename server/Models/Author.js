@@ -3,7 +3,10 @@ import { Schema, model } from "mongoose";
 const AuthorShema = new Schema (
     {
         name: String,
-        books: Array,
+        books: [{
+            type: Schema.Types.ObjectId,
+            ref: "Book"
+        }]
     }
 )
 

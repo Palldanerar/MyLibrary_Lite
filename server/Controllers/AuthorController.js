@@ -3,7 +3,7 @@ import Author from "../Models/Author.js";
 export const getAllAuthor = async (req, res) => {
     try {
         
-        const authors = await Author.find()
+        const authors = await Author.find().populate("books").exec()
 
         res.json(authors)
 
@@ -17,7 +17,7 @@ export const getAllAuthor = async (req, res) => {
 export const getAuthor = async (req, res) => {
     try {
         
-        const author = await Author.findOne({_id: req.params.id})
+        const author = await Author.findOne({_id: req.params.id}).populate("books").exec()
 
         res.json(author)
 
@@ -85,4 +85,4 @@ export const deleteAuthor = async (req, res) => {
             message: `Ошибка при удалении автора - ${err}` 
         })
     }
-} 
+}
